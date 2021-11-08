@@ -14,16 +14,151 @@
   height: 40px;
   padding: 0;
   text-align: center;
+  /* flex: 1 1 auto; */
 }
 
 .imageContainer {
   flex: 1 1 auto;
-  height: 100%;
+  max-height: calc(100% - 75px);
 }
 
-.imageContainer img {
+/* .imageContainer img {
   width: 40px;
   height: 40px;
+} */
+
+/* Grid classes are global to prevent redundant code */
+.grid {
+  display: grid;
+}
+
+.grid img {
+  place-self: center;
+  margin: 0;
+  height: 100%;
+  max-height: 100%;
+  width: auto;
+}
+
+.one {
+  grid-template: 1fr / 1fr;
+}
+
+.one img {
+  /* width: 40vw; */
+}
+
+.two {
+  grid-template: 1fr 1fr / 1fr;
+}
+
+.two img {
+  /* width: 40vw; */
+}
+
+.three {
+  grid-template: 1fr 1fr / 1fr 1fr;
+  grid-template-areas:
+    "a a"
+    "b b";
+}
+
+.three img:first-child {
+  grid-area: a;
+}
+
+.three img {
+  /* width: 35vw; */
+}
+
+.four {
+  grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.four img {
+  /* width: 30vw; */
+}
+
+.five {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.five img:first-child {
+  grid-column: 1 / span 2;
+  grid-row: 2 / 3;
+}
+
+.five img {
+  /* width: 30vw; */
+}
+
+.six {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.six img {
+  /* width: 30vw; */
+}
+
+.seven {
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+}
+
+.seven img {
+  /* width: 100%; */
+}
+
+.seven img:first-child {
+  grid-column: 1 / span 2;
+  grid-row: 3 / span 2;
+}
+
+.seven img:nth-child(2) {
+  grid-column: 1 / span 2;
+  grid-row: 7 / span 2;
+}
+
+.seven img:nth-child(3) {
+  grid-column: 3 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.seven img:nth-child(4) {
+  grid-column: 3 / span 2;
+  grid-row: 5 / span 2;
+}
+
+.seven img:nth-child(5) {
+  grid-column: 3 / span 2;
+  grid-row: 9 / span 2;
+}
+
+.seven img:nth-child(6) {
+  grid-column: 5 / span 2;
+  grid-row: 3 / span 2;
+}
+
+.seven img:nth-child(7) {
+  grid-column: 5 / span 2;
+  grid-row: 7 / span 2;
+}
+
+.eight {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.nine {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.ten {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 }
 
 .showSprite {

@@ -4,12 +4,25 @@ import getRandom from "../helpers/get-random"
 import { GameContext } from "../store/game-context"
 import * as styles from "../styles/counting-game.module.css"
 
+const classes = {
+  1: "one",
+  2: "two",
+  3: "three",
+  4: "four",
+  5: "five",
+  6: "six",
+  7: "seven",
+  8: "eight",
+  9: "nine",
+  10: "ten",
+}
+
 const CountingGame = () => {
   const [game, setGame] = useContext(GameContext)
 
   const [pokemon, setPokemon] = useState({})
   const [pokeArr, setPokeArr] = useState([])
-
+  const [numberClass, setNumberClass] = useState("")
   const [number, setNumber] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -23,6 +36,9 @@ const CountingGame = () => {
     //Get a random number
     const num = getRandom(game.countingGame.min, game.countingGame.max)
     setNumber(num)
+    setNumberClass(classes[num])
+
+    console.log(numberClass)
 
     //Create array of JSX elements
     let pokeArr = []
@@ -38,8 +54,6 @@ const CountingGame = () => {
       )
     }
     setPokeArr(pokeArr)
-
-    console.log(pokeArr)
 
     setIsLoading(false)
   })
@@ -84,8 +98,12 @@ const CountingGame = () => {
         {!isLoading && (
           <>
             <h2 className={styles.pokemonName}>{pokemon.name}</h2>
-            <div className={styles.number}>{number}</div>
-            <div className={styles.imageContainer}>{pokeArr}</div>
+            {/* <div className={styles.number}>{number}</div> */}
+            <div
+              className={`${styles.imageContainer} ${styles[numberClass]} ${styles.grid}`}
+            >
+              {pokeArr}
+            </div>
           </>
         )}
       </div>
