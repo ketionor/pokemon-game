@@ -20,9 +20,13 @@ const classes = {
 const CountingGame = () => {
   const [game, setGame] = useContext(GameContext)
 
+  //the current pokemon on screen
   const [pokemon, setPokemon] = useState({})
+  //array of jsx elements
   const [pokeArr, setPokeArr] = useState([])
+  //class to help display different numbers of elements
   const [numberClass, setNumberClass] = useState("")
+  //the number ne
   const [number, setNumber] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
 
@@ -38,24 +42,16 @@ const CountingGame = () => {
     setNumber(num)
     setNumberClass(classes[num])
 
-    console.log(numberClass)
-
     //Create array of JSX elements
-    let pokeArr = []
+    let tempArr = []
     for (let i = 0; i < num; i++) {
-      let imgStyle = `img__${i + 1}`
-      pokeArr.push(
-        <img
-          //   className={`${styles.imgStyle}`}
-          src={pokemon.sprite}
-          alt={pokemon.name}
-          key={i}
-        />
-      )
+      tempArr.push(<img src={pokemon.sprite} alt={pokemon.name} key={i} />)
     }
-    setPokeArr(pokeArr)
+    setPokeArr(tempArr)
 
-    setIsLoading(false)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 150)
   })
 
   //get a random pokemon
@@ -78,14 +74,14 @@ const CountingGame = () => {
   //     handleNext()
   //   }
 
-  //   useEffect(() => {
-  //     window.addEventListener("keydown", handleNextKeypress)
-  //     gameStart()
+  useEffect(() => {
+    window.addEventListener("click", handleNext)
+    gameStart()
 
-  //     return () => {
-  //       window.removeEventListener("keydown", handleNext)
-  //     }
-  //   }, [])
+    return () => {
+      window.removeEventListener("click", handleNext)
+    }
+  }, [])
 
   return (
     <div>
@@ -108,9 +104,9 @@ const CountingGame = () => {
         )}
       </div>
 
-      <button onClick={handleNext} className={styles.next__button}>
+      {/* <button onClick={handleNext} className={styles.next__button}>
         Next
-      </button>
+      </button> */}
     </div>
   )
 }
